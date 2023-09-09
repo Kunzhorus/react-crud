@@ -15,7 +15,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {user && user.auth && <Route path="/users" element={<TableUsers />} />}
-
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>

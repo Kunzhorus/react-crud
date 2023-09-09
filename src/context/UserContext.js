@@ -9,11 +9,12 @@ const UserProvider = ({ children }) => {
  
   
   const loginContext = (email, token) => {
+    localStorage.setItem("token", token)
     setUser((user) => ({
       email: email,
       auth: true,
     }));
-    localStorage.setItem("token", token)
+    
   };
 
   const logout = () => {

@@ -71,7 +71,7 @@ function TableUsers() {
     let list = [];
     if (term) {
       listUsers.map((user) => {
-        if (user.email.includes(term)) list = [...list, user];
+        if (user.email.includes(term.trim())) list = [...list, user];
         return list;
       });
       setListUsers(list);
@@ -108,65 +108,68 @@ function TableUsers() {
           onChange={(e) => handleSearch(e)}
         />
       </div>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th className="sort-header">
-              <span>ID</span>
-              <span>
-                <i
-                  className="fa-solid fa-arrow-down"
-                  onClick={() => handleSort("desc", "id")}
-                ></i>
-                <i
-                  className="fa-solid fa-arrow-up"
-                  onClick={() => handleSort("asc", "id")}
-                ></i>
-              </span>
-            </th>
-            <th>Email</th>
-            <th className="sort-header">
-              <span> First Name</span>
-              <span>
-                <i
-                  className="fa-solid fa-arrow-down"
-                  onClick={() => handleSort("desc", "first_name")}
-                ></i>
-                <i
-                  className="fa-solid fa-arrow-up"
-                  onClick={() => handleSort("asc", "first_name")}
-                ></i>
-              </span>
-            </th>
-            <th>Last Name</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {listUsers.map((user, index) => (
-            <tr key={`users-${index}`}>
-              <td>{user.id}</td>
-              <td>{user.email}</td>
-              <td>{user.first_name}</td>
-              <td>{user.last_name}</td>
-              <td>
-                <button
-                  className="btn btn-warning mx-3"
-                  onClick={() => handleShowModalEdit(user)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleShowModalDelete(user)}
-                >
-                  Delete
-                </button>
-              </td>
+      
+      <div className="over-flow">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th className="sort-header">
+                <span>ID</span>
+                <span>
+                  <i
+                    className="fa-solid fa-arrow-down"
+                    onClick={() => handleSort("desc", "id")}
+                  ></i>
+                  <i
+                    className="fa-solid fa-arrow-up"
+                    onClick={() => handleSort("asc", "id")}
+                  ></i>
+                </span>
+              </th>
+              <th>Email</th>
+              <th className="sort-header">
+                <span> First Name</span>
+                <span>
+                  <i
+                    className="fa-solid fa-arrow-down"
+                    onClick={() => handleSort("desc", "first_name")}
+                  ></i>
+                  <i
+                    className="fa-solid fa-arrow-up"
+                    onClick={() => handleSort("asc", "first_name")}
+                  ></i>
+                </span>
+              </th>
+              <th>Last Name</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {listUsers.map((user, index) => (
+              <tr key={`users-${index}`}>
+                <td>{user.id}</td>
+                <td>{user.email}</td>
+                <td>{user.first_name}</td>
+                <td>{user.last_name}</td>
+                <td>
+                  <button
+                    className="btn btn-warning mx-3"
+                    onClick={() => handleShowModalEdit(user)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleShowModalDelete(user)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
 
       <ReactPaginate
         nextLabel="next >"

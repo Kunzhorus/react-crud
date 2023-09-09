@@ -26,9 +26,14 @@ function Login() {
         navigate("/")
       }
     }
-    setIconLoading(false)
+    // setIconLoading(false)
   }
 
+  const handleEnter = (e) => {
+    if (e && e.key === "Enter"){
+      handleLogin()
+    }
+  }
 
   return (
     <div className="login-container col-11 col-sm-4">
@@ -46,6 +51,7 @@ function Login() {
           placeholder="Enter password..."
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={e => handleEnter(e)}
         />
         <i
           className={
